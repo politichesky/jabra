@@ -1,0 +1,6 @@
+  <p>Имя: <%= link_to user.name, user_path(user) %><br />
+  E-mail: <%= user.email %><br />
+  <% if current_user.admin? %>
+    <%= link_to "Edit", edit_user_path(user) %> | <%= link_to "Delete", user, :method => :delete, :confirm => "You sure?", :title => "Delete #{user.name}?" %>
+  <% end %>
+  </p>

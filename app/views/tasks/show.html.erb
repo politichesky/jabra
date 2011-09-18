@@ -1,0 +1,40 @@
+<h1><%= @task.title %></h1>
+<p>
+  Автор: <%= User.find(@task.author_id).name %></br>
+  Ответственный: <%= @task.user.name %></br>
+  Статус: <%= @task.status.content %></br>
+</p>
+<p><%= @task.content %></p>
+
+<div class="task-actions">
+  <%= render 'task-actions' %>
+</div>
+<br /><hr /> <!-- delete this shit! -->
+
+<div class="comment-add">
+  <h3>Оставить комментарий</h3>
+  
+  <%= form_for @comment do |f| %>
+  
+    <%= render 'shared/error_messages', :object => f.object %>
+    <div class="field">
+      <%= f.label :content, "Текст комментария" %><br />
+      <%= f.text_area :content %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :task_id, {:value => "#{@task.id}"} %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Опубликовать" %>
+    </div>
+  <% end %>
+</div>
+
+<br /><hr /> <!-- delete this shit! -->
+
+<div class="comment-list">
+  <h3>Комментарии к задаче</h3>
+  <%= render @task.comments %>
+</div>
+
+

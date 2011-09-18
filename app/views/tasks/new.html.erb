@@ -1,0 +1,23 @@
+<h1>Новая задача</h1>
+<%= form_for @task, :html => {:class=>"some-cool-class"} do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :project, "Проект" %><br />
+    <%= select("task","project_id", Project.all.collect {|p|[p.title, p.id] }, {:include_blank => 'Выберите проект' }) %>
+  </div>
+  <div class="field">
+    <%= f.label :user, "Ответственный" %><br />
+    <%= select("task","user_id", User.all.collect {|u|[u.name, u.id] }, {:include_blank => 'None' }) %>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Заголовок" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content, "Текст задачи" %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Создать" %>
+  </div>
+<% end %>

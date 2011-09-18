@@ -1,0 +1,155 @@
+<!-- main menu  -->
+
+<div class="main-menu">
+  <nav id="main-menu">
+    <ul>
+      <li><%= link_to (root_path) do %>
+          <button class="round">Главная</button>
+        <% end %>
+      </li>
+      <li><%= link_to (about_path) do %>
+          <button class="round">Автор</button>
+        <% end %>
+      </li>
+      <% if signed_in? %>
+      <li><%= link_to (projects_path) do %>
+          <button class="round">Проекты</button>
+        <% end %>
+      </li>
+      <li><%= link_to (edit_user_path(current_user)) do %>
+          <button class="round">Профиль</button>
+        <% end %>
+      </li>
+      <li><%= link_to (logout_path) do %>
+          <button class="round">Выйти</button>
+        <% end %>
+      </li>
+      <% else %>
+      <li><%= link_to (login_path) do %>
+          <button class="round">Войти</button>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+
+<!-- user menu-->
+
+<div class="round-right taskbar">
+  <% if signed_in? %>
+    <nav id="user-menu">
+      <ul>
+        <li>
+          <% if params[:menu] == 'inbox' %>
+            <span class="current">Входящие</span>
+          <% else %>
+            <%= link_to "Входящие", :controller => 'tasks', :action => 'sort_by_user', :user_id => @current_user.id %>
+          <% end %>
+        </li>
+        <li>
+          <% if params[:menu] == 'outbox' %>
+            <span class="current">Исходящие</span>
+          <% else %>
+            <%= link_to "Исходящие", :controller => 'tasks', :action => 'sort_by_author', :author_id => @current_user.id %></li>
+          <% end %>
+        </li>
+        <li><%= link_to "Новая задача", new_task_path %></li>
+      </ul>
+    </nav>
+  <% end %>
+</div>
+
+
+<!-- taskbox menu -->
+
+<div class="taskbox round-right">
+
+  <!-- inbox bottom menu -->
+
+  <% if params[:menu] == 'inbox' %>
+    <nav>
+      <ul>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_user', :user_id => @current_user.id) and !params[:status_id] %>
+            <span class="current">Все</span>
+          <% else %>
+            <%= link_to "Все", :controller => 'tasks', :action => 'sort_by_user', :user_id => @current_user.id %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_user', :user_id => @current_user.id, :status_id => 1) %>
+            <span class="current">Не рассмотренные</span>
+          <% else %>
+            <%= link_to "Не рассмотренные", :controller => 'tasks', :action => 'sort_by_user', :user_id => @current_user.id, :status_id => 1 %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_user', :user_id => @current_user.id, :status_id => 2) %>
+            <span class="current">Принятые</span>
+          <% else %>
+            <%= link_to "Принятые", :controller => 'tasks', :action => 'sort_by_user', :user_id => @current_user.id, :status_id => 2 %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_user', :user_id => @current_user.id, :status_id => 3) %>
+            <span class="current">Выполненные</span>
+          <% else %>
+            <%= link_to "Выполненные", :controller => 'tasks', :action => 'sort_by_user', :user_id => @current_user.id, :status_id => 3 %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_user', :user_id => @current_user.id, :status_id => 4) %>
+            <span class="current">Отклоненные</span>
+          <% else %>
+            <%= link_to "Отклоненные", :controller => 'tasks', :action => 'sort_by_user', :user_id => @current_user.id, :status_id => 4 %>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  <% end %>
+
+  <!-- outbox bottom menu -->
+
+  <% if params[:menu] == 'outbox' %>
+    <nav>
+      <ul>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_author', :author_id => @current_user.id) and !params[:status_id] %>
+            <span class="current">Все</span>
+          <% else %>    
+            <%= link_to "Все", :controller => 'tasks', :action => 'sort_by_author', :author_id => @current_user.id %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_author', :author_id => @current_user.id, :status_id => 1) %>
+            <span class="current">Не рассмотренные</span>
+          <% else %>
+            <%= link_to "Не рассмотренные", :controller => 'tasks', :action => 'sort_by_author', :author_id => @current_user.id, :status_id => 1 %></li>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_author', :author_id => @current_user.id, :status_id => 2) %>
+            <span class="current">Принятые</span>
+          <% else %>
+            <%= link_to "Принятые", :controller => 'tasks', :action => 'sort_by_author', :author_id => @current_user.id, :status_id => 2 %></li>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_author', :author_id => @current_user.id, :status_id => 3) %>
+            <span class="current">Выполненные</span>
+          <% else %>
+            <%= link_to "Выполненные", :controller => 'tasks', :action => 'sort_by_author', :author_id => @current_user.id, :status_id => 3 %></li>
+          <% end %>
+        </li>
+        <li>
+          <% if current_page?(:controller => 'tasks',:action => 'sort_by_author', :author_id => @current_user.id, :status_id => 4) %>
+            <span class="current">Отклоненные</span>
+          <% else %>
+            <%= link_to "Отклоненные", :controller => 'tasks', :action => 'sort_by_author', :author_id => @current_user.id, :status_id => 4 %></li>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  <% end %>
+</div>

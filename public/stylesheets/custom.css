@@ -1,0 +1,204 @@
+body {
+  background-color: #b6b6b6;
+}
+
+header {
+    padding-top: 20px;
+}
+
+header h1 {
+  color: #000;
+  margin-left: -20px;
+}
+
+header h2 {
+  margin-top:-10px;
+  margin-left: -10px;
+  font-style: italic;
+}
+
+section {
+    margin-top:15px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+section h1 {
+    font-size: 200%;
+}
+
+.boldy {
+  font-weight:bold;
+}
+
+.round {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+}
+
+.round-top {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px 10px 0px 0px;
+
+}
+
+.round-right {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:0px 10px 10px 0px;
+
+}
+
+.round-left {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px 0px 0px 10px;
+
+}
+
+
+/* linking */
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+}
+
+a:visited {
+    text-decoration: none;
+    color:purple;
+}
+
+/* navigation */
+
+/* taskbar */
+
+.taskbar {
+  background-color: #000;
+  color: #fff;
+  margin:10px 0px 0px 0px;
+  padding: 0px 20px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.taskbar a {
+  color: #fff;
+}
+
+.taskbar a:hover {
+  color:red;
+  text-decoration: underline;
+}
+
+.taskbar .current {
+  background-color: red;
+  padding:8px 10px 8px 10px;
+}
+
+/* taskbox */
+
+.taskbox {
+  xmargin-top:15px;
+  width:50%;
+  margin-left:25px;
+  padding-left:20px;
+  background-color: #262424;
+  color: #000;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.taskbox a {
+  color:#fff;
+}
+.taskbox a:hover {
+  color:red;
+  text-decoration: underline;
+}
+
+.taskbox .current {
+  background-color:yellow;
+  padding:10px 10px 10px 10px;
+}
+
+nav button {
+  background-color:#fff;
+  border: 2px solid black;
+}
+nav ul {
+    padding:0px;
+    margin: 0px;
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0.4em;
+}
+
+/* task actions block */
+
+.task-actions button {
+  background-color:#fff;
+  border: 2px solid black;
+}
+
+/* comments */
+
+.comment-content {
+  font-weight:bold;
+  margin-left:10px;
+  margin-top:10px;
+}
+
+/* projects */
+
+.project-content {
+  font-size:14px;
+  margin-left:10px;
+  margin-top:30px;
+}
+
+/* errors style */
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+  display: table
+}
+
+.field_with_errors label {
+  color: #fff;
+}
+
+#error_explanation {
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom:12px;
+  margin-bottom:12px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  color: red;
+}
+
+#error_explanation p {
+  color: #333;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+
+#error_explanation ul li {
+  font-size:12px;
+  list-style:square;
+}
+
+

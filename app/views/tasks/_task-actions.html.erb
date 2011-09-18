@@ -1,0 +1,20 @@
+<% if responsible_user? %>
+  <% case @task.status_id  %>
+  <% when 1 %>
+    <%= link_to :controller => "statuses", :action => "confirm", :id => @task do %>
+      <button class="round">Подтвердить</button>
+    <% end %>
+  <% when 2 %>
+    <%= link_to :controller => "statuses", :action => "done", :id => @task do %>
+      <button class="round">Выполнить</button>
+    <% end %>
+  <% end %>
+  <%= link_to :controller => "statuses", :action => "abort", :id => @task do %>
+      <button class="round">Отклонить</button>
+  <% end %>
+<% end %>
+<% if author? %>
+  <%= link_to :controller => "tasks", :action => "edit", :id => @task do %>
+    <button class="round">Правка</button>
+  <% end %>
+<% end %>
