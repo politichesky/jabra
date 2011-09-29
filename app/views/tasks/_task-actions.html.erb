@@ -1,15 +1,15 @@
 <% if responsible_user? %>
   <% case @task.status_id  %>
   <% when 1 %>
-    <%= link_to :controller => "statuses", :action => "confirm", :id => @task do %>
+    <%= link_to :controller => "statuses", :action => "update", :id => @task, :status_id => 2 do %>
       <button class="round">Подтвердить</button>
     <% end %>
   <% when 2 %>
-    <%= link_to :controller => "statuses", :action => "done", :id => @task do %>
+    <%= link_to :controller => "statuses", :action => "update", :id => @task, :status_id => 3 do %>
       <button class="round">Выполнить</button>
     <% end %>
   <% end %>
-  <%= link_to :controller => "statuses", :action => "abort", :id => @task do %>
+  <%= link_to :controller => "statuses", :action => "update", :id => @task, :status_id => 4 do %>
       <button class="round">Отклонить</button>
   <% end %>
 <% end %>

@@ -10,6 +10,8 @@
 
 class Status < ActiveRecord::Base
 
+attr_accessible :content
+
 has_many :tasks
 
 end

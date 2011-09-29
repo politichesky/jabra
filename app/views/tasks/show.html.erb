@@ -1,6 +1,6 @@
 <h1><%= @task.title %></h1>
 <p>
-  Автор: <%= User.find(@task.author_id).name %></br>
+  Автор: <%= @task.author.name %></br>
   Ответственный: <%= @task.user.name %></br>
   Статус: <%= @task.status.content %></br>
 </p>

@@ -6,9 +6,9 @@ Ssr::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :comments, :only => [:create, :destroy]
   
-  match 'task/:id/confirm' => 'statuses#confirm'
-  match 'task/:id/done' => 'statuses#done'
-  match 'task/:id/abort' => 'statuses#abort'
+  match 'task/:id/confirm/:status_id' => 'statuses#update'
+  match 'task/:id/done/:status_id' => 'statuses#update'
+  match 'task/:id/abort/:status_id' => 'statuses#update'
   
   match 'tasks/sort_by_status/:status_id' => 'tasks#sort_by_status'
   match 'tasks/sort_by_user/:user_id' => 'tasks#sort_by_user'

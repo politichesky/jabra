@@ -1,5 +1,6 @@
 <p><span class="boldy">Заголовок:</span> <%= link_to task.title, task_path(task) %></br>
 <span class="boldy">Проект:</span> <%= link_to task.project.title, project_path(task.project) %></br>
+<span class="boldy">Автор:</span> <%= link_to task.author.name, user_path(task.author) %></br>
 <span class="boldy">Ответственный:</span> <%= link_to task.user.name, user_path(task.user) %></br>
-<span class="boldy">Статус:</span> <%= task.status.content %>
+<span class="boldy">Статус:</span> <%= task.status.content rescue Status.find(task.status_id).content %>
 </p>

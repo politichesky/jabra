@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   attr_accessor :password 
   attr_accessible :name, :email, :password, :password_confirmation, :status, :jid, :icq, :skype
 
-  has_many :tasks
+  has_many :incomes, :class_name => "Task", :foreign_key => "user_id"
+  has_many :outcomes, :class_name => "Task", :foreign_key => "author_id"
   has_many :comments
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

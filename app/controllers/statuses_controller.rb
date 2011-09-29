@@ -1,5 +1,12 @@
 class StatusesController < ApplicationController
 
+  def update
+    @task = Task.find(params[:id])
+    @task.status_id = params[:status_id]
+    @task.save
+    redirect_to @task
+  end
+
   def confirm
     @task = Task.find(params[:id])
     @task.status_id = 2
@@ -20,6 +27,8 @@ class StatusesController < ApplicationController
     @task.save
     redirect_to @task
   end
+
+# not used now
 
   def closed
     @task = Task.find(params[:id])

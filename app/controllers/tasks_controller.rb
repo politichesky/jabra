@@ -1,14 +1,18 @@
+#encoding: utf-8
 class TasksController < ApplicationController
 
   before_filter :authenticate
-  before_filter :author_user, :only => [:edit, :update, :destroy] 
+  before_filter :author_user, :only => [:edit, :update, :destroy]
+  before_filter :admin_user, :only => [:index]
+  before_filter :responsible_user, :only => [:show]
  
   def index
     @tasks ||= Task.all
   end
 
   def sort_by_status
-    @tasks = Task.find_all_by_status_id(params[:status_id])
+    status = params[:status_id]
+    @tasks = status.tasks
     render :index
   end
   
@@ -20,12 +24,12 @@ class TasksController < ApplicationController
     else
       user = User.find(params[:user_id])
     end
-    @tasks = params[:status_id] ? user.tasks.find_all_by_status_id(params[:status_id]) : user.tasks
+    @tasks = params[:status_id] ? user.incomes.find_all_by_status_id(params[:status_id]) : user.incomes
     render :index
   end
 
   def sort_by_author
-    @tasks = params[:status_id] ? Task.find_all_by_author_id_and_status_id(params[:author_id],params[:status_id]) : Task.find_all_by_author_id(params[:author_id]) 
+    @tasks = params[:status_id] ? Task.find_all_by_author_id_and_status_id(params[:author_id],params[:status_id]) : Task.find_all_by_author_id(params[:author_id]) # check it!
     params[:menu] ||= 'outbox' if params[:author_id].to_i == @current_user.id
     render :index
   end
@@ -39,19 +43,18 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = Task.new(params[:task])
+    @task = @current_user.outcomes.new(params[:task])
     @task.status_id = 1
-    @task.author_id = @current_user.id
     if @task.save
       flash[:success] = "Task created"
-      redirect_to root_path
+      redirect_to task_path(@task)
     else
       render :new
     end
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id]) # zzzzz, check it!
 
     if @task.update_attributes(params[:task])
       @task.status_id = 1 if @task.user_id != params[:task][:user_id] or @task.project_id != params[:task][:project_id]
@@ -74,11 +77,17 @@ class TasksController < ApplicationController
      redirect_to tasks_path
   end
 
+
   private
 
     def author_user
       @task = Task.find(params[:id])
-      deny_access if @task.author_id != current_user.id
+      redirect_to(@current_user) && flash[:notice] = "Доступ запрещен" unless @task.author == @current_user or admin?
+    end
+
+    def responsible_user
+      @task = Task.find(params[:id])
+      redirect_to(@current_user) && flash[:notice] = "Доступ запрещен!" unless @current_user == @task.user or @current_user == @task.author or admin?
     end
     
 end

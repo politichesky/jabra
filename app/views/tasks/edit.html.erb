@@ -3,11 +3,11 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
     <%= f.label :project, "Проект" %><br />
-    <%= select("task","project_id", Project.all.collect {|p|[p.title, p.id] }, {:include_blank => 'Выберите проект' }) %>
+    <%= select("task","project_id", Project.all.collect {|p|[p.title, p.id] }) %>
   </div>
   <div class="field">
     <%= f.label :user, "Ответственный" %><br />
-    <%= select("task","user_id", User.all.collect {|u|[u.name, u.id] }, {:include_blank => 'None' }) %>
+    <%= select("task","user_id", User.all.collect {|u|[u.name, u.id] }) %>
   </div>
   <div class="field">
     <%= f.label :title, "Заголовок" %><br />

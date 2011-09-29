@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 module SessionsHelper
   def login(user)
     cookies.permanent.signed[:remember_token] = [user.id,user.salt]
@@ -26,7 +28,7 @@ module SessionsHelper
   end
 
   def deny_access
-    redirect_to root_path, :notice => "You have not access for this page"
+    redirect_to root_path, :notice => "Доступ запрещен"
   end
 
   def current_user?(user)
@@ -38,8 +40,7 @@ module SessionsHelper
   end
 
   def admin_user
-    flash[:error] = "You have not permission for this page!"
-    redirect_to(root_path) unless current_user.admin?
+    redirect_to(user_path(@current_user)) && flash[:notice] = "Доступ запрещен" unless current_user.admin?
   end
 
   private

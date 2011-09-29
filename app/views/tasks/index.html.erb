@@ -1,1 +1,5 @@
-<%= render @tasks ? @tasks : 'not_found'  %> 
+<% unless @tasks.empty? %>
+  <%= render @tasks %>
+<% else %>
+  По предложенным критериям задач не обнаружено
+<% end %>
