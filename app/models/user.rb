@@ -18,8 +18,11 @@
 
 class User < ActiveRecord::Base
   attr_accessor :password 
-  attr_accessible :name, :email, :password, :password_confirmation, :status, :jid, :icq, :skype
-
+  attr_accessible :name, :email, :password, :password_confirmation, :status, :jid, :icq, :skype, :avatar
+  has_attached_file :avatar, :styles => {:medium => "300x300", :thumb => "100x100" }
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg','image/gif','image/png']
+  validates_attachment_size :avatar, :in => 1..1.megabyte
+  
   has_many :incomes, :class_name => "Task", :foreign_key => "user_id"
   has_many :outcomes, :class_name => "Task", :foreign_key => "author_id"
   has_many :comments

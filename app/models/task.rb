@@ -15,8 +15,10 @@
 #
 
 class Task < ActiveRecord::Base
-  attr_accessible :title, :content, :user_id, :project_id, :status_id # status_id opened for FactoryGirl! TODO: think how i want to set statuses
-
+  attr_accessible :title, :content, :user_id, :project_id, :status_id, :attach # status_id opened for FactoryGirl! TODO: think how i want to set statuses
+  has_attached_file :attach, :url => "/files/:filename" 
+  validates_attachment_content_type :attach, :content_type => ['image/jpeg','application/vnd.ms-excel','application/msword','image/gif','text/html','text/plain','image/bmp','image/png']
+  validates_attachment_size :attach, :in => 1..1.megabyte
   has_many :comments, :dependent => :destroy
   belongs_to :user, :foreign_key => "user_id"
   belongs_to :author, :class_name => "User", :foreign_key => "author_id"
