@@ -5,7 +5,7 @@
   Статус: <%= @task.status.content %></br>
 </p>
 <p><%= @task.content %></p>
-<% if @task.attach %>
+<% if @task.attach? %>
   <p>Задача имеет присоединенное вложение!<br />
   <%= link_to "Просмотр", @task.attach.url %>
   </p>
