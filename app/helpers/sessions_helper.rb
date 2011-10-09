@@ -28,7 +28,11 @@ module SessionsHelper
   end
 
   def deny_access
-    redirect_to root_path, :notice => "Доступ запрещен"
+    if @current_user 
+      redirect_to user_path(@current_user), :notice => "Доступ запрещен" 
+    else
+      redirect_to root_path, :notice => "Доступ запрещен"
+    end
   end
 
   def current_user?(user)
@@ -40,7 +44,17 @@ module SessionsHelper
   end
 
   def admin_user
-    redirect_to(user_path(@current_user)) && flash[:notice] = "Доступ запрещен" unless current_user.admin?
+    deny_access unless @current_user && admin?
+  end
+  
+  def author_user
+    @task = Task.find(params[:id])
+    deny_access unless @task.author == @current_user or admin?
+  end
+
+  def responsible_user
+    @task = Task.find(params[:id])
+    deny_access unless @current_user == @task.user or @current_user == @task.author or admin?
   end
 
   private

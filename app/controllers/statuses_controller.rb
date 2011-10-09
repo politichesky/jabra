@@ -1,4 +1,6 @@
 class StatusesController < ApplicationController
+  before_filter :authenticate
+  before_filter :responsible_user, :only => [:update]
 
   def update
     @task = Task.find(params[:id])
@@ -6,28 +8,6 @@ class StatusesController < ApplicationController
     @task.save
     redirect_to @task
   end
-
-  def confirm
-    @task = Task.find(params[:id])
-    @task.status_id = 2
-    @task.save
-    redirect_to @task
-  end
-
-  def done
-    @task = Task.find(params[:id])
-    @task.status_id = 3
-    @task.save
-    redirect_to @task
-  end
-
-  def abort
-    @task = Task.find(params[:id])
-    @task.status_id = 4
-    @task.save
-    redirect_to @task
-  end
-
 # not used now
 
   def closed

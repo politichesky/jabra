@@ -17,7 +17,6 @@ class TasksController < ApplicationController
   end
   
   def sort_by_user
-#   user = params[:user_id] == @current_user.id ? @current_user : User.find(params[:user_id]) 
     if params[:user_id].to_i == @current_user.id
       params[:menu] ||= 'inbox'
       user = @current_user
@@ -78,16 +77,6 @@ class TasksController < ApplicationController
   end
 
 
-  private
 
-    def author_user
-      @task = Task.find(params[:id])
-      redirect_to(@current_user) && flash[:notice] = "Доступ запрещен" unless @task.author == @current_user or admin?
-    end
-
-    def responsible_user
-      @task = Task.find(params[:id])
-      redirect_to(@current_user) && flash[:notice] = "Доступ запрещен!" unless @current_user == @task.user or @current_user == @task.author or admin?
-    end
     
 end

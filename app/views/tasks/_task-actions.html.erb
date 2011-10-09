@@ -9,12 +9,19 @@
       <button class="round">Выполнить</button>
     <% end %>
   <% end %>
-  <%= link_to :controller => "statuses", :action => "update", :id => @task, :status_id => 4 do %>
+  <% unless @task.status_id == 4 or 3 %>
+    <%= link_to :controller => "statuses", :action => "update", :id => @task, :status_id => 4 do %>
       <button class="round">Отклонить</button>
+    <% end %>
   <% end %>
 <% end %>
 <% if author? %>
   <%= link_to :controller => "tasks", :action => "edit", :id => @task do %>
     <button class="round">Правка</button>
+  <% end %>
+<% end %>
+<% if admin? %>
+  <%= link_to @task, :method => :delete, :confirm => "Удалить задачу?", :title => "Удалить задачу N #{@task.id}?" do %>
+    <button class="round dangerous">Удалить</button>
   <% end %>
 <% end %>
