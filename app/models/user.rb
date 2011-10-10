@@ -18,7 +18,8 @@
 
 class User < ActiveRecord::Base
   attr_accessor :password 
-  attr_accessible :name, :email, :password, :password_confirmation, :status, :jid, :icq, :skype, :avatar
+  attr_accessible :name, :email, :password, :password_confirmation, :status, :jid, :icq, :skype, :avatar, :notify_jabber, :notify_email
+  
   has_attached_file :avatar, :styles => {:medium => "300x300", :thumb => "100x100" }
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg','image/gif','image/png']
   validates_attachment_size :avatar, :in => 1..1.megabyte

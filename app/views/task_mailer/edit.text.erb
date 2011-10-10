@@ -1,0 +1,5 @@
+<%= @user.name %>,
+Сегодня, в <%= @task.created_at %>, <%= @author.name %> изменил заявку под номером <%= @task.id %> для проекта <%= @task.project.title %> и назначил вас ответственным за её выполнение.
+Новый текст заявки:
+<%= @task.title %>
+<%= @task.content %>

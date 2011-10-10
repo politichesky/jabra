@@ -9,6 +9,12 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
+  <% if @user.email? %>
+  <div class="field">
+    <%= f.label "Присылать уведомления на email" %>
+    <%= f.check_box :notify_email %>
+  </div>
+  <% end %>
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
@@ -29,6 +35,12 @@
     <%= f.label :jid %><br />
     <%= f.text_field :jid %>
   </div>
+  <% if @user.jid? %>
+  <div class="field">
+    <%= f.label "Присылать уведомления на jabber" %>
+    <%= f.check_box :notify_jabber %>
+  </div>
+  <% end %>
   <div class="field">
     <%= f.label :skype %><br />
     <%= f.text_field :skype %>

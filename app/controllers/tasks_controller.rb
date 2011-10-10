@@ -45,6 +45,8 @@ class TasksController < ApplicationController
     @task = @current_user.outcomes.new(params[:task])
     @task.status_id = 1
     if @task.save
+      TaskMailer.new_task(@task.user,@task.author,@task).deliver if @task.user.notify_email?
+      jabber_notify(@task.user.jid, "#{@task.user.name}! Пользователь #{@task.author.name} создал задачу №#{@task.id} и назначил вас ответственным. Заголовок задачи: #{@task.title}") if @task.user.notify_jabber?
       flash[:success] = "Task created"
       redirect_to task_path(@task)
     else
@@ -58,6 +60,8 @@ class TasksController < ApplicationController
     if @task.update_attributes(params[:task])
       @task.status_id = 1 if @task.user_id != params[:task][:user_id] or @task.project_id != params[:task][:project_id]
       @task.save
+      TaskMailer.edit(@task.user,@task.author,@task).deliver if @task.user.notify_email?
+      jabber_notify(@task.user.jid, "#{@task.user.name}! Пользователь #{@task.author.name} изменил задачу №#{@task.id} и назначил вас ответственным!") if @task.user.notify_jabber?
       flash[:success] = "Task updated"
       redirect_to @task
     else
@@ -76,7 +80,4 @@ class TasksController < ApplicationController
      redirect_to tasks_path
   end
 
-
-
-    
 end

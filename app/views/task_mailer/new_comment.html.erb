@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+  <h1><%= @user.name %></h1>
+  <p>Сегодня, в <%= @comment.created_at %>, <%= @comment.user.name %> оставил новый комментарий для заявки № <%= @comment.task.id %></p>
+  </body>
+</html>

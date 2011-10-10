@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @author.name %></h1>
+    <p>Сегодня, в <%= @task.updated_at %>, <%= @user.name %> отметил вашу заявку № <%= @task.id %> как выполненную.</p>
+    <p>Текст вашей заявки: <br />
+      <%= @task.title %><br />
+      <%= @task.content %>
+    </p>
+  </body>
+</html>

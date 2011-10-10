@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @user.name %></h1>
+    <p>Сегодня, в <%= @task.created_at %>, <%= @author.name %> создал новую заявку под номером <%= @task.id %> для проекта <%= @task.project.title %> и назначил вас ответственным за её выполнение.</p>
+    <p>Текст заявки: <br />
+      <%= @task.title %><br />
+      <%= @task.content %>
+    </p>
+  </body>
+</html>

@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.9'
 gem 'sqlite3'
 gem 'paperclip', '~> 2.4'
+gem 'xmpp4r'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
