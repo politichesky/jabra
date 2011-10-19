@@ -1,6 +1,17 @@
-  <p>Имя: <%= link_to user.name, user_path(user) %><br />
-  E-mail: <%= user.email %><br />
-  <% if current_user.admin? %>
-    <%= link_to "Edit", edit_user_path(user) %> | <%= link_to "Delete", user, :method => :delete, :confirm => "You sure?", :title => "Delete #{user.name}?" %>
-  <% end %>
-  </p>
+<div class="elem-container">
+  <span class="title"> <%= link_to user.name, user_path(user) %></span><br />
+  <label>E-mail:</label> <%= user.email %><br />
+  <div class="actions">
+    <%= link_to user_path(user) do %>
+      <button class="round">Просмотр</button>
+    <% end %>
+    <% if admin? %>
+      <%= link_to edit_user_path(user) do %>
+        <button class="round">Правка</button>
+      <% end %> 
+      <%= link_to user, :method => :delete, :confirm => "Удалить, йа?", :title => "Delete #{user.name}?" do %>
+        <button class="round danger">Удалить</button>
+      <% end %>
+    <% end %>
+  </div>
+</div>

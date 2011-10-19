@@ -146,6 +146,11 @@ nav {
     background-color:#fff;
     border: 2px solid black;
   }
+  .danger {
+    color: $white;
+    background-color:$red;
+    border-color: $red;
+  }
 }
 
 /* comments */
@@ -198,5 +203,20 @@ nav {
 }
 
 .elem-container {
-  padding-bottom:10px;
+  border: 2px dashed gray;
+  padding: {
+    left:10px;
+    top:5px;
+    bottom:10px;
+  }
+  margin-bottom:10px;
+  font-size:10px;
+  label {
+    padding-left:10px;
+    font-style: italic;
+  }
+  .title {
+    padding-left:0px;
+    font-size:18px;
+  }
 }

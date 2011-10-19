@@ -1,6 +1,17 @@
-<p>Название: <%= link_to project.title, project_path(project) %></br>
-Создан: <%= project.created_at %><br>
-<% if admin? %>
-  <%= link_to "Править", edit_project_path(project) %>  <%= link_to "Удалить", project, :method => :delete, :confirm => "Удалить, йа?", :title => "Delete #{project.title}?" %>
-<% end %>
-</p>
+<div class="elem-container">
+  <span class="title"> <%= project.title %></span></br>
+  <label>Создан:</label> <%= project.created_at %><br>
+  <div class="actions">
+    <%= link_to project_path(project) do %>
+      <button class="round">Просмотр</button>
+    <% end %>
+    <% if admin? %>
+      <%= link_to edit_project_path(project) do %>
+        <button class="round">Правка</button>
+      <% end %> 
+      <%= link_to project, :method => :delete, :confirm => "Удалить, йа?", :title => "Delete #{project.title}?" do %>
+        <button class="round danger">Удалить</button>
+      <% end %>
+    <% end %>
+  </div>
+</div>

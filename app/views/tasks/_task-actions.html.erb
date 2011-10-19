@@ -22,6 +22,6 @@
 <% end %>
 <% if admin? %>
   <%= link_to @task, :method => :delete, :confirm => "Удалить задачу?", :title => "Удалить задачу N #{@task.id}?" do %>
-    <button class="round dangerous">Удалить</button>
+    <button class="round danger">Удалить</button>
   <% end %>
 <% end %>

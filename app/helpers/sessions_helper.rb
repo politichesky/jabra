@@ -44,7 +44,7 @@ module SessionsHelper
   end
 
   def admin_user
-    deny_access unless @current_user && admin?
+    deny_access unless current_user && admin?
   end
   
   def author_user
