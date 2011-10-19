@@ -1,7 +1,7 @@
 <!-- main menu  -->
 
 <div class="main-menu">
-  <nav id="main-menu">
+  <nav>
     <ul>
       <% if signed_in? %>
       <li><%= link_to (projects_path) do %>
@@ -44,7 +44,7 @@
 
 <div class="round-right taskbar">
   <% if signed_in? %>
-    <nav id="user-menu">
+    <nav>
       <ul>
         <li>
           <% if params[:menu] == 'inbox' %>
@@ -74,7 +74,6 @@
 <!-- taskbox menu -->
 
 <div class="taskbox round-right">
-
   <!-- inbox bottom menu -->
 
   <% if params[:menu] == 'inbox' %>

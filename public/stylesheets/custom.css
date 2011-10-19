@@ -2,20 +2,22 @@ body {
   background-color: #b6b6b6;
 }
 
+/* header */
 header {
     padding-top: 20px;
+    xpadding-left:50px;
+    xmargin-left:50px;
 }
 
-header h1 {
-  color: #000;
-  margin-left: -20px;
+header img {
+  margin-left:-30px;
 }
 
 header h2 {
-  margin-top:-10px;
-  margin-left: -10px;
   font-style: italic;
 }
+
+/* section (main window) */
 
 section {
     margin-top:15px;
@@ -27,10 +29,12 @@ section h1 {
     font-size: 200%;
 }
 
+/* ??? */
 .boldy {
   font-weight:bold;
 }
 
+/* roundess */
 .round {
   -moz-border-radius:10px;
   -webkit-border-radius:10px;
@@ -60,11 +64,9 @@ section h1 {
 
 
 /* linking */
-
 a {
     text-decoration: none;
 }
-
 a:hover {
     color: red;
 }
@@ -77,7 +79,6 @@ a:visited {
 /* navigation */
 
 /* taskbar */
-
 .taskbar {
   background-color: #000;
   color: #fff;
@@ -127,6 +128,7 @@ a:visited {
   padding:10px 10px 10px 10px;
 }
 
+/* ??? */
 nav button {
   background-color:#fff;
   border: 2px solid black;
@@ -143,14 +145,12 @@ nav ul li {
 }
 
 /* task actions block */
-
 .task-actions button {
   background-color:#fff;
   border: 2px solid black;
 }
 
 /* comments */
-
 .comment-content {
   font-weight:bold;
   margin-left:10px;
@@ -166,7 +166,6 @@ nav ul li {
 }
 
 /* errors style */
-
 .field_with_errors {
   margin-top: 10px;
   padding: 2px;

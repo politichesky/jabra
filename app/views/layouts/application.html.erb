@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html>
 <head>
   <title>JABRA - Just Another Bugtracker</title>
@@ -7,18 +7,18 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div class="container">
-  <%= render 'layouts/header' %>
-  <%= render 'shared/nav_menu' %>
-  <section class="round-right">
-    <% flash.each do |key,value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-    <%= yield %>
-  </section>
-</div>
-<footer>
-  <%= debug(params) if Rails.env.development? %>
-</footer>
+  <div class="container">
+    <%= render 'layouts/header' %>
+    <%= render 'shared/nav_menu' %>
+    <section class="round-right">
+      <% flash.each do |key,value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </section>
+    <footer>
+      <%= debug(params) if Rails.env.development? %>
+    </footer>
+  </div>
 </body>
 </html>

@@ -1,0 +1,202 @@
+
+/* DEFINITIONS */
+
+$gray: #b6b6b6;
+$white: #fff;
+$black: #000;
+$red: red;
+$yellow: yellow;
+
+@mixin round {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+}
+
+/* BODY */
+
+body {
+  background-color: #b6b6b6;
+}
+
+/* HEADER */
+
+header {
+    padding: { top: 20px; }
+    img { margin: { left: -30px; } }
+    h2 { font: { style: italic; } }
+}
+
+/* SECTION (CONTENT DIV) */
+
+section {
+    margin-top:15px;
+    padding: 20px;
+    background-color: $white;
+    h1 { font: { size: 200%; } }
+}
+
+/* ??? */
+.boldy {
+  font-weight:bold;
+}
+
+/* ROUNDED */
+
+.round { @include round; }
+
+.round-top {
+  @include round;
+  border-radius:10px 10px 0px 0px;
+}
+
+.round-right {
+  @include round;
+  border-radius:0px 10px 10px 0px;
+}
+
+.round-left {
+  @include round;
+  border-radius:10px 0px 0px 10px;
+}
+
+
+/* LINKS */
+
+a {
+    text-decoration: none;
+    &:hover { color: $red; }
+    &:visited {
+      text-decoration: none;
+      color:purple;
+    }
+}
+
+/* NAVIGATION */
+
+nav {
+  button {
+    background-color:#fff;
+    border: 2px solid black;
+  }
+  ul {
+    padding:0px;
+    margin: 0px;
+    li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 0.4em;
+    }
+  }
+}
+
+/* TASKBAR */
+
+.taskbar {
+  background-color: $black;
+  color: $white;
+  margin:10px 0px 0px 0px;
+  padding: 0px 20px;
+  font: {
+    size:14px;
+    weight:bold;
+  }
+  a {
+    color: $white;
+    &:hover {
+      color: $red;
+      text-decoration: underline;
+    }
+  }
+  .current {
+    background-color: $red;
+    padding:8px 10px 8px 10px;
+  }
+}
+
+/* TASKBOX */
+
+.taskbox {
+  width:50%;
+  margin-left:25px;
+  padding-left:20px;
+  background-color: #262424;
+  color: $black;
+  font: {
+    size:10px;
+    weight:bold;
+  }
+  a { 
+    color: $white;
+    &:hover {
+      color:$red;
+      text-decoration: underline;
+    }
+  }
+  .current {
+    background-color:$yellow;
+    padding:10px 10px 10px 10px;
+  }
+}
+
+/* ACTIONS */
+
+.actions {
+  button { 
+    background-color:#fff;
+    border: 2px solid black;
+  }
+}
+
+/* comments */
+.comment-content {
+  font-weight:bold;
+  margin-left:10px;
+  margin-top:10px;
+}
+
+/* projects */
+
+.project-content {
+  font-size:14px;
+  margin-left:10px;
+  margin-top:30px;
+}
+
+/* ERRORS */
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+  display: table
+  label {
+    color: $white;
+  }
+}
+
+#error_explanation {
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom:12px;
+  margin-bottom:12px;
+  background-color: #f0f0f0;
+  h2 {
+    color: $red;
+  }
+  p {
+    color: #333;
+    padding: 5px;
+    margin-bottom: 0px;
+  }
+  ul {
+    li {
+      font-size:12px;
+      list-style:square;
+    }
+  }
+}
+
+.elem-container {
+  padding-bottom:10px;
+}
