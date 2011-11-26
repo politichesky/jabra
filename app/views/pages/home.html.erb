@@ -1,7 +1,8 @@
 <% if signed_in? %>
 <div id='registery-member'>
-  <h1>Привет, <%= @current_user.name %></h1>
-  <p> Это главная страница багтрекера, ага. Мне кажется, что для залогинившихся пользователей следует сделать редирект с главной на профиль - что им тут смотреть? Пусть лучше работают или бухают, если работать не хотят.</p>
+  <% time = get_time %>
+  <h1><%= time %>, <%= @current_user.name %>-san </h1>
+  <p> <%= image_tag "#{time}.gif" %></p>
 </div>
 <% else %>
 <div id='non-registery-member'>
