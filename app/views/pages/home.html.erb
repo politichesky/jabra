@@ -1,7 +1,7 @@
 <% if signed_in? %>
 <div id='registery-member'>
   <% time = get_time %>
-  <h1><%= time %>, <%= @current_user.name %>-san </h1>
+  <h1><%= time.slice(0).capitalize + time.slice(1 .. -1) %>, <%= @current_user.name %>-san </h1>
   <p> <%= image_tag "#{time}.gif" %></p>
 </div>
 <% else %>
