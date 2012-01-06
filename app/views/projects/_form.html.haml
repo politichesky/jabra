@@ -1,0 +1,39 @@
+.legend
+  .element
+    .red_sq 
+    == required fields
+  .element
+    .yell_sq 
+    == not required fields
+= form_for @project, :html => { :multipart => true } do |f|
+  = render "shared/errors", :object => @project if @project.errors.any?
+  %table.new
+    %tr
+      %td.required= f.label :title, t("title")
+      %td= f.text_field :title
+      %td.desc Maximum 30 symbols
+    %tr
+      %td.required= f.label :desc, t("description")
+      %td= f.cktext_area :desc
+      %td.desc
+    %tr
+      %td.not_required= label_tag "project_image[img]", t("project image") 
+      %td
+        = image_tag @project.image.img.url(:thumb) unless @project.image.nil? 
+        %br
+        = file_field :project_image, :img
+      %td.desc PNG or JPEG formats, max. 300kb
+    %tr
+      %td.not_required= f.label :public, t("public")
+      %td.checkbox= f.check_box :public
+      %td.desc Check this, if you want all users to have access to the project
+    %tr{:class => "allow-users"}
+      %td.not_required= t("allowed users")
+      %td.checkbox
+        - User.all.each do |user|
+          = label user.id, user.name
+          = check_box_tag "users[#{user.id}]",1, @project.users.include?(user)
+          %br
+      %td.desc Select users who will have access, if project isn't public
+    %tr
+      %td{:colspan => 3,:class => "fake-break"}= f.submit "Save", :class => "button"

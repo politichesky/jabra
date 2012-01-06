@@ -1,0 +1,11 @@
+%p Введите ваши данные для входа
+= form_for :session, :url => sessions_path do |f|
+  %table.new
+    %tr
+      %td= f.label :email, "E-mail"
+      %td= f.text_field :email
+    %tr
+      %td= f.label :password, "Пароль"
+      %td= f.password_field :password
+    %tr
+      %td{:colspan => 2,:class => "fake-break"}= f.submit "Save", :class => "button"

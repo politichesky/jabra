@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  icq: MyString
+  jabber: MyString
+  skype: MyString
+  phone: MyString
+  website: MyString
+
+two:
+  icq: MyString
+  jabber: MyString
+  skype: MyString
+  phone: MyString
+  website: MyString

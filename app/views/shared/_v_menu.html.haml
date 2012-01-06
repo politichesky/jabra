@@ -1,0 +1,65 @@
+= link_to root_path do 
+  %button.bigBut= t("home")
+
+- if current_user
+
+  = link_to user_path(current_user) do
+    %button.bigBut= t("profile")
+
+  = link_to logout_path do
+    %button.bigBut= t("logout")
+
+- else
+
+  = link_to login_path do
+    %button.bigBut= t("login")
+
+  = link_to new_user_path do
+    %button.bigBut= t("registration")
+
+
+
+
+- if current_user  #TODO: FIX IT!!!!!
+  - if @current_target
+    .sidebar
+      - case @target
+        - when "project"
+          .infobar
+            project: 
+            %span.bold= @current_target.title
+            %br
+            public: yes
+        - when "user","author"
+          .infobar
+            user:
+            %span.bold= @current_target.name
+            %br
+            email:
+            = @current_target.email
+      .taskfilter
+        = form_tag tasks_path, :method => "get" do
+          = hidden_field_tag "target", @target
+          = hidden_field_tag "target_id", @target_id
+          = select_tag "target", %Q[<option value='user'>incomes</option><option value='author' #{@target == "author" ? "selected" : ""}>outcomes</option>].html_safe if @target == "user" or @target == "author"
+          = select_tag "type", options_from_collection_for_select(Type.all, "id", "title",@type),{:prompt => "all"}
+          = select_tag "status", options_from_collection_for_select(Status.all, "id", "title",@status),{:prompt => "all"}
+          = submit_tag "filter tasks", :class => "button"
+        = link_to new_task_path do
+          = image_tag "icons/new.png", :size => "15x15"
+  .top-menu
+    = form_tag tasks_path, :method => "get" do
+      = hidden_field_tag "target", "project"
+      = select_tag "target_id", options_from_collection_for_select(Project.get_projects_for(current_user), "id", "title", @target == "project" ? @target_id : 0 ),{:prompt => "projects"}
+      = submit_tag "go", :class => "button"
+    = link_to new_project_path do
+      = image_tag "icons/new.png", :size => "15x15"
+  - if current_user.admin?
+    .top-menu
+      = form_tag tasks_path, :method => "get" do
+        = hidden_field_tag "target", "user"
+        = select_tag "target_id", options_from_collection_for_select(User.all, "id", "name", @target == "user" ? @target_id : 0 ),{:prompt => "users"}
+        = submit_tag "go", :class => "button"
+      = link_to new_user_path do
+        = image_tag "icons/new.png", :size => "15x15"
+

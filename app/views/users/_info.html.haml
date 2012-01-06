@@ -1,0 +1,34 @@
+.left
+  = render "shared/actions", :item => item
+  = image_tag avatar_image(item,:small)
+.right
+  %h2= t("information")
+  %span.bold name:
+  = item.name
+  %br
+  %span.bold status:
+  = user_status(item)
+  %br
+  %span.bold registered:
+  = item.created_at
+  %br
+  %span.bold tasks created:
+  = item.outcomes.count
+  %br
+  %span.bold tasks accepted:
+  = item.incomes.count
+  %br
+  %span.bold comments:
+  = item.comments.count
+  %h2= t("contacts")
+  %span.bold icq:
+  = item.contact.icq
+  %br
+  %span.bold jabber:
+  = item.contact.jabber
+  %br
+  %span.bold skype:
+  = item.contact.skype
+  %br
+  %span.bold website:
+  = item.contact.website

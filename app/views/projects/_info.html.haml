@@ -1,0 +1,51 @@
+.left
+  = render "shared/actions", :item => item
+  = image_tag avatar_image(item,:small)
+  %br
+  == status: #{project_status(item)}
+  %br
+  == tasks: #{item.tasks.count}
+.right
+  %h2= t("information")
+  = item.desc.html_safe
+
+  // TODO:refact this
+
+  %h2= t("users")
+  - project_users(item,2).each do |d|
+    .user
+      = image_tag avatar_image(d,:small)
+      %br
+      == #{d.name}, developer
+  - project_users(item,1).each do |u|
+    .user
+      = image_tag avatar_image(u,:small)
+      %br
+      == #{u.name}, user
+  
+
+-#
+  .sticker
+    .title description
+    .body
+      .left
+        = image_tag avatar_image(item,:small)
+        %br
+        == status: #{project_status(item)}
+        %br
+        == tasks: #{item.tasks.count}
+      .right
+        = item.desc
+  .sticker
+    .title users
+    .body
+      - project_users(item,2).each do |d|
+        .user
+          = image_tag avatar_image(d,:small)
+          %br
+          == #{d.name}
+      - project_users(item,1).each do |d|
+        .user
+          = image_tag avatar_image(d,:small)
+          %br
+          == #{d.name}

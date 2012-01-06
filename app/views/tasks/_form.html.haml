@@ -1,0 +1,28 @@
+.legend
+  .element
+    .red_sq 
+    == required fields
+  .element
+    .yell_sq 
+    == not required fields
+= form_for @task do |f|
+  = render "shared/errors", :object => @task if @task.errors.any?
+  %table.new
+    %tr
+      %td.required= f.label :project_id, t("project")
+      %td= f.select :project_id, options_from_collection_for_select(Project.get_projects_for(current_user), :id, :title) 
+      %td.desc Select a project for your task
+    %tr
+      %td.required= f.label :type_id, t("type")
+      %td= f.select :type_id, options_from_collection_for_select(Type.get_available_types_for(current_user), :id, :title) 
+      %td.desc Select a type of your task
+    %tr
+      %td.required= f.label :title, t("title")
+      %td= f.text_field :title
+      %td.desc Maximum 30 symbols
+    %tr
+      %td.required= f.label :desc, t("descripton")
+      %td= f.cktext_area :desc
+      %td.desc
+    %tr
+      %td{:colspan => 3,:class => "fake-break"}= f.submit "Save", :class => "button"

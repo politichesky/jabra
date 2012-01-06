@@ -1,0 +1,18 @@
+- if controller_name == "tasks"
+  .legend
+    .element
+      .red_sq 
+      == new tasks
+    .element
+      .yell_sq 
+      == accepted tasks
+    .element
+      .green_sq 
+      == done tasks
+    .element
+      .gray_sq 
+      == aborted tasks
+  %br
+
+.items
+  = render @items

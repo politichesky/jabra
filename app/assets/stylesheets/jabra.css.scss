@@ -1,0 +1,561 @@
+/* 
+  you must put your .css/.sass file to app/assets/stylesheets and it is all
+  after, you can select your style from menu
+  style-preference are saved in cookies, it should be enabled in browser
+
+*/
+
+@mixin gradient($colorOne,$colorTwo,$style) {
+    background: $colorOne; /* Для старых браузров */
+    background: -moz-linear-gradient($style, $colorOne, $colorTwo); /* Firefox 3.6+ */
+    /* Chrome 1-9, Safari 4-5 */
+    background: -webkit-gradient(linear, left $style, left bottom, 
+                color-s$style(0%,$colorOne), color-s$style(100%, $colorTwo));
+    /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-linear-gradient($style, $colorOne, $colorTwo);
+    background: -o-linear-gradient($style, $colorOne, $colorTwo); /* Opera 11.10+ */
+    background: -ms-linear-gradient($style, $colorOne, $colorTwo); /* IE10 */
+    background: linear-gradient($style, $colorOne, $colorTwo); /* CSS3 */
+}
+
+@mixin round {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+}
+@mixin top-menu {
+  background-color:#fff;
+  border: none;
+  color: #000;
+  padding:3px;
+}
+@mixin sidebar {
+  @include round;
+  background-color:$dark-gray;
+  padding:2px 5px;
+  display:inline-block;
+  vertical-align:top;
+  font-size:10px;
+  margin-bottom:5px;
+}
+@mixin form {
+  form {
+    display:inline-block;
+    input, button, select {
+      border:1px solid black;
+      height:25px;
+      background-color:#000;
+      color:#fff;
+      font-size:10px;
+    }
+    input {
+      &:hover {
+        background-color:red;
+      }
+    }
+    option {
+      @include round;
+    }
+  }
+}
+@mixin item-def-style {
+  @include round;
+  font-size:12px;
+  background-color:gray;
+  color:black;
+  padding: 5px 10px;
+  margin: 2px 0px;
+}
+@mixin sticker {
+  @include round;
+  width:98%;
+  margin: {
+    right:auto;
+    left:auto;
+  }
+}
+@mixin colorized-square {
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin-right:5px;
+}
+
+$lightGreen: #4ede1c;
+$bg1: #3b3b3b;
+$grayGreen: #1f9532;
+$red: #f03030;
+$yellow: #d6e346;
+$dark_gray:#262424;
+$light_gray:#a7a7a7;
+$gray:gray;
+$green:$lightGreen;
+
+
+#error_explanation {
+  @include round;
+  background-color:$red;
+  padding:5px 10px 2px;
+  margin-bottom:5px;
+  color:$dark_gray;
+}
+
+hr {
+  color:gray;
+}
+// styles from tasks types and statuses
+
+.bug {
+  font-weight:bold;
+  color:$red;
+}
+
+.request {
+  font-weight:bold;
+  color:$yellow;
+}
+
+.feature {
+  font-weight:bold;
+  color:$green;
+}
+
+.task-new {
+  background-color:$red !important;
+}
+.task-accept {
+  background-color:$yellow !important;
+}
+.task-done {
+  background-color:$green !important;
+}
+.task-abort {
+  background-color:$gray !important;
+}
+
+a {
+  text-decoration:none;
+}
+.bigBut {
+  @include round;
+  min-height:26px;
+  border:2px solid $dark-gray;
+  background-color:$dark-gray;
+  color:$light-gray;
+  &:hover {
+    background-color:$red;
+    color:$dark-gray;
+  }
+}
+
+
+
+.sticker {
+  @include round;
+  padding:2px;
+  background-color: gray;
+  margin-bottom:10px;
+  .title {
+    @include sticker;
+    text-align:center;
+    width:99%;
+    background-color:$grayGreen;
+    color:#fff;
+    font-weight:bold;
+    padding-bottom:0px;
+    margin-bottom:3px;
+  }
+  .body {
+    @include sticker;
+    font-size:10px;
+    padding:2px 5px;
+    background-color: gray;
+    color:$bg1;
+    text-align:justify;
+    .comment {
+      padding-left:10px;
+      .text {
+        color:#000;
+        padding-left:5px;
+      }
+    }
+    .reply-form {
+      margin-top:10px;
+      textarea {
+        @include round;
+        border: none;
+        width:200px;
+        height:100px;
+      }
+    }
+    .user {
+      display:inline-block;
+      padding:5px;
+    }
+  }
+}
+
+.top-menu {
+  min-height:25px;
+  @include sidebar;
+  @include form;
+  select,button {
+    min-height:25px;
+    font-size:10px;
+    @include top-menu;
+    background-color:#000;
+    color:#fff;
+    &:hover {
+      background-color:red !important;
+    }
+
+    option {
+      &:hover {
+        background-color:red !important;
+        color:white;
+      }
+    }
+  }
+}
+.userbar {
+  @include round;
+  background-color:$bg1;
+  margin-top:10px;
+  display:inline-block;
+  width:220px;
+  font-size:10px;
+  padding:5px;
+  vertical-align:top;
+  .non-register {
+    font-size:12px;
+    a {
+      color:white;
+    }
+  }
+  .userinfo {
+    display:inline-block;
+    vertical-align:top;
+    padding:5px;
+    .bold {
+      font-weight:bold;
+      color: #000;
+    }
+  }
+  .tasksinfo {
+    display:inline-block;
+    vertical-align:top;
+  }
+  .links {
+    vertical-align:top;
+    padding: {
+      left:2px;
+    }
+    a {
+      padding:3px;
+      font-size:10px;
+      text-decoration:none;
+      background-color:black;
+      color:white;
+      &:hover {
+        background-color:red;
+      }
+    }
+  }
+}
+
+.flash {
+  @include round;
+  color:$dark-gray;
+  padding:5px 10px;
+  margin-bottom:5px;
+  width:100%;
+  font-size:14px;
+}
+.success {
+  background-color:$green;
+}
+
+.error {
+  background-color:$red;
+}
+
+.notice {
+  background-color:$yellow;
+}
+
+.legend { // legend for forms and items collections 
+  color:$light_gray;
+  font-weight:bold;
+  margin-bottom:5px;
+  .element {
+    display:inline-block;
+    padding-right:10px;
+    vertical-align:middle;
+  }
+}
+
+.red_sq {
+  @include colorized_square;
+  background-color: $red;
+}
+.green_sq {
+  @include colorized_square;
+  background-color: $green;
+}
+.gray_sq {
+  @include colorized_square;
+  background-color: $gray;
+}
+.yell_sq {
+  @include colorized_square;
+  background-color: $yellow;
+}
+.new { // form for new items, haml templates in app/views/#{controller}/_form.html.haml
+  width:100%;
+  border-spacing:0px 5px;
+  @include round;
+  background-color:$dark-gray;
+  tr {
+    background-color:$dark-gray;
+    td {
+      padding-left:10px;
+      input,select,textarea {
+        width:100%;
+      }
+      .button {
+        @include round;
+        width:50px;
+        border: 2px solid red;
+        margin-left:10px;
+      }
+    }
+    .desc {
+      font-style:italic;
+      padding-left:15px;
+      background-color:$dark_gray;
+      color:$light_gray;
+    }
+    .fake-break {
+      padding-left:0px;
+      h1 {
+        @include round;
+        text-align:center;
+        background-color:$light-gray;
+        color:$dark-gray;
+        width:90%;
+        margin: {
+          left:auto;
+          right:auto;
+        }
+      }
+    }
+    .required {
+      font-weight:bold;
+      color:$red;
+    }
+    .checkbox {
+      input { width:auto; }
+    }
+    .not_required {
+      font-weight:bold;
+      color:$yellow;
+    }
+  }
+}
+
+.items { // style for collections
+  width:100%;
+  .item {
+    @include item-def-style;
+    width:98%;
+    display:inline-block;
+    color: $bg1;
+    &:hover {
+      background-color:white !important;
+    }
+    .bold {
+      font-weight:bold;
+      color:#000;
+    }
+  }
+  .item-info {
+    @include item-def-style;
+    display:none;
+    background-color:#262626;
+    color:#fff;
+    padding: 5px 10px;
+    margin: {
+      right:5px;
+      top:5px;
+      bottom:5px;
+    }
+    .links {
+      margin-bottom:5px;
+      a {
+        text-decoration:none;
+      }
+      input, button {
+        @include item-def-style;
+      }
+      form { 
+        display:inline-block;
+      }
+    }
+    .bold {
+      color:$gray;
+      font-weight:bold;
+    }
+  }
+}
+.left {
+  display:inline-block;
+  width:auto;
+  padding-right:5px;
+  form {
+    display:inline-block;
+  }
+  input,button,select{
+    font-size:10px;
+  }
+  .links {
+    a {
+      @include colorized_square;
+      padding:2px;
+      color:$bg1;
+      text-decoration:none;
+    }
+  
+  }
+}
+.right {
+  display:inline-block;
+  padding-left:10px;
+  vertical-align:top;
+  width:75%;
+  border-left:1px dashed $bg1;
+  h2 {
+    @include round;
+    text-align:center;
+    padding:2px;
+    background-color:$gray;
+    color:$dark-gray;
+  }
+  .user {
+    display:inline-block;
+  }
+  .comment {
+    @include round;
+    padding:5px 10px;
+    margin-bottom:5px;
+    .title {
+      color:$gray;
+      padding:0px;
+      margin:0px;
+      font-style:italic;
+    }
+    .desc {
+      margin-top:0px;
+      //padding-left:10px;
+    }
+    .actions {
+      margin-top:0px;
+      text-align:left;
+      a {
+      }
+    }
+  }
+  #new_comment {
+    #comment_content {
+      @include round;
+      width:auto;
+      height:100px;
+    }
+  }
+}
+html {
+  body {
+    width:100%;
+    background-color:#000;
+    color:#fff;
+    font: {
+      family: tahoma, arial, verdana, sans-serif, terminus;
+      size:12px;
+    }
+
+    .container {
+      max-width:70%;
+      margin: { 
+        left:auto;
+        right:auto;
+      }
+      header {
+        img { border: black solid 2px; }
+      }
+      .main {
+        .sidebar {
+          @include sidebar;
+          .infobar {
+            display:inline-block;
+            vertical-align:top;
+            .bold {
+              font-weight:bold;
+              color:$lightGreen;
+            }
+          }
+          .taskfilter {
+            @include form;
+            display:inline-block;
+            padding: 0px 5px 0px 5px;
+          }
+        }
+        .content {
+          @include round;
+          border: 1px solid $bg1;
+          width:100%;
+          background-color: $bg1;
+          display:inline-block;
+          padding:5px 10px;
+          table.form {
+            @include round;
+            padding:10px;
+            border-spacing:2px;
+            background-color:#262626;
+            tr {
+            }
+            .label {
+              padding-top:10px;
+              span.bold {
+                @include round;
+                padding:5px;
+                background-color:$lightGreen;
+                color:$bg1;
+              }
+            }
+            td {
+              padding:5px;
+              vertical-align:top;
+            }
+            input,textarea {
+              @include round;
+              border: 2px solid black;
+              padding:5px;
+            }
+          }
+          form {
+            input {
+              background-color:#fff;
+            }
+            .button {
+              border: none;
+              background-color:#000;
+              color:#fff;
+              &:hover {
+                background-color:red;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

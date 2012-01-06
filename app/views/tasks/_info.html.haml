@@ -1,0 +1,28 @@
+.left
+  = render "shared/actions", :item => item
+  %span.bold type:
+  %span{:class => item.type.title }= item.type.title rescue "none"
+  %br
+  %span.bold status:
+  %span{:class => item.status.title }= item.status.title rescue "none"
+  = " by #{item.user.name}" if item.status_id > 1 rescue nil
+  %br
+  %span.bold attachments:
+  = show_task_attach(item) rescue "none"
+  - if current_user.developer?
+    //TODO: not a valid, place :color into .sass file
+    %hr{:color => 'gray'}
+    %span.bold set status:
+    = form_for item do |f|
+      = f.select "status_id", options_from_collection_for_select(Status.all, "id", "title"),{:include_blank => true}
+      = f.submit "Save", :class => "button"
+.right
+  .comment
+    .title== #{item.created_at} #{item.author.name} wrote
+    .desc= item.desc.html_safe
+    .actions 
+      = hidden_field_tag "parent_id" 
+      = link_to "Reply", "#", :class => %q[reply-link]
+    - item.comments.without_childs.each do |comment|
+      = render comment
+  = render "comments/form", :task => item

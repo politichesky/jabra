@@ -1,0 +1,24 @@
+%div{:class => "item task-"+colorize(task)} 
+  %span.bold== ##{task.id}
+  %span.bold= task.title
+  = task_author_name(task)
+  = task.created_at
+-#
+  .links
+  = form_for task do |f|
+    = f.hidden_field :status_id, :value => 2
+    = f.submit "Accept"
+  = form_for task do |f|
+    = f.hidden_field :status_id, :value => 3
+    = f.submit "Done"
+  = form_for task do |f|
+    = f.hidden_field :status_id, :value => 4
+    = f.submit "Abort"
+  .links
+  = link_to "edit", edit_task_path(task)
+  = link_to "show", task_path(task)
+  = link_to task, :method => :delete, :confirm => "Really destroy?" do
+    = image_tag "icons/destroy.png", :size => "15x15"
+%br
+.item-info
+  = render "info", :item => task

@@ -1,0 +1,71 @@
+.legend
+  .element
+    .red_sq 
+    == required fields
+  .element
+    .yell_sq 
+    == not required fields
+= form_for @user, :html => { :multipart => true } do |f|
+  = render "shared/errors", :object => @user if @user.errors.any?
+  %table.new
+    %tr
+      %td{:colspan => 3,:class => "fake-break"}
+        %h1= t("information")
+    %tr
+      %td.required= f.label :name, t("name")
+      %td= f.text_field :name
+      %td.desc Max. 30 symbols
+    %tr
+      %td.required= f.label :email, t("email")
+      %td= f.email_field :email
+      %td.desc Enter exist address, please, not for spam
+    %tr
+      %td.required= f.label :password, t("password")
+      %td= f.password_field :password
+      %td.desc Min. 5 symbols, not 12345 :)
+    %tr
+      %td.required= f.label :password_confirmation, t("password_confirmation")
+      %td= f.password_field :password_confirmation
+      %td.desc
+    - if current_user.admin?
+      %tr
+        %td.not_required= f.label :admin, t("admin access")
+        %td.checkbox= f.check_box :admin
+        %td.desc
+      %tr
+        %td.not_required= f.label :access_id, t("user access") 
+        %td= f.select :access_id, options_from_collection_for_select(Access.all, :id, :title,@user.access_id)
+        %td.desc 
+    %tr
+      %td.not_required= label_tag "user_image[img]", t("avatar")
+      %td
+        = image_tag @user.image.img.url(:thumb) unless @user.image.nil? 
+        = file_field :user_image, :img
+      %td.desc PNG or JPEG formats, max size - 300kb
+    %tr
+      %td{:colspan => 3,:class => "fake-break"}
+        %h1= t("contacts")
+        
+    = fields_for @contact do |c|
+      %tr
+        %td.not_required= c.label :icq, t("icq")
+        %td= c.text_field :icq
+        %td.desc
+      %tr
+        %td.not_required= c.label :jabber, t("jabber")
+        %td= c.text_field :jabber
+        %td.desc
+      %tr
+        %td.not_required= c.label :skype, t("skype")
+        %td= c.text_field :skype
+        %td.desc
+      %tr
+        %td.not_required= c.label :phone, t("phone")
+        %td= c.text_field :phone
+        %td.desc
+      %tr
+        %td.not_required= c.label :website, t("website")
+        %td= c.text_field :website
+        %td.desc
+    %tr
+      %td{:colspan => 3,:class => "fake-break"}= f.submit "Save", :class => "button"

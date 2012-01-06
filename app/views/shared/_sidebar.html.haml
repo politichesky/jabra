@@ -1,0 +1,17 @@
+.sidebar
+  - if @current_project
+    .projectbar
+      .projectinfo
+        project: 
+        %span.bold= @current_project.title
+        %br
+        public: yes
+    .taskfilter
+      Filter tasks
+      = form_tag tasks_path, :method => "get" do
+        = select_tag "type", options_from_collection_for_select(Type.all, "id", "title"),{:prompt => "All"}
+        %br
+        = select_tag "status", options_from_collection_for_select(Status.all, "id", "title"),{:prompt => "All"}
+        %br
+        = submit_tag "Filter", :class => "button"
+

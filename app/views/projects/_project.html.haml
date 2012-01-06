@@ -1,0 +1,11 @@
+.item
+  %span.bold= project.title
+  = project.created_at
+-#
+  .links
+    = link_to "edit", edit_project_path(project)
+    = link_to "show", project_path(project)
+    = link_to "destroy", project, :method => :delete, :confirm => "Really destroy?"
+%br
+.item-info
+  = render "info", :item => project

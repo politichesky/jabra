@@ -1,0 +1,16 @@
+.links
+  = link_to item, :title => "View" do
+    %span.green_sq
+  - if current_user.admin?
+    = link_to ({:controller => controller_name, :action => :edit, :id => item.id}, {:title => "Edit"}) do
+      %span.yell_sq
+    = link_to item, :method => :delete, :confirm => "Really destroy?", :title => "Destroy" do
+      %span.red_sq
+  - elsif current_user.developer?
+    - if controller_name == "users" or controller_name == "tasks"
+      = link_to ({:controller => controller_name, :action => :edit, :id => item.id}, {:title => "Edit"}) do
+        %span.yell_sq
+  - else
+    - if controller_name == "users"
+      = link_to ({:controller => controller_name, :action => :edit, :id => item.id}, {:title => "Edit"}) do
+        %span.yell_sq

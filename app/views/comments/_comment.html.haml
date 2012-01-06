@@ -1,0 +1,9 @@
+.comment
+  .title== #{comment.created_at} #{comment.user.name} wrote
+  .desc= comment.content
+  .actions
+    = hidden_field_tag "parent_id", comment.id
+    = link_to "Reply", "#", :class => %q[reply-link]
+    = link_to "Destroy", comment, :method => :delete, :confirm => "Really destroy?"  
+  - comment.childs.each do |children|
+    = render children

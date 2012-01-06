@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Jabra
+    = stylesheet_link_tag    "jabra"
+    = javascript_include_tag "jquery", "jquery_ujs", "jabra", "ckeditor/ckeditor"
+    = stylesheet_link_tag params[:controller]
+    = javascript_include_tag params[:controller]
+    = csrf_meta_tags
+  %body
+    .container
+      =render "layouts/header"
+      .main
+        = render "shared/v_menu"
+        - flash.each do |key,value|
+          %div{:class => "flash #{key}"}= value
+        .content
+          = yield
+      %footer
+        = debug(params) if Rails.env.development? and current_user and current_user.admin?
+      

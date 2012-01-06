@@ -1,0 +1,15 @@
+.userbar
+  - if current_user
+    .userinfo
+      = image_tag avatar_image(current_user, :small)
+    .tasksinfo
+      incoming:
+      = link_to new_tasks_for_user, tasks_path(:target => "user", :status => 1, :type => 0)
+      %br
+      outcoming:
+      = link_to user_tasks, tasks_path(:target => "user", :status => 0, :type => 0)
+  - else
+    .non-register
+      = link_to t("login"), login_path
+      or 
+      = link_to t("register"), new_user_path
