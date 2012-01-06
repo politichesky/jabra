@@ -1,1 +1,0 @@
-= select(args[0],args[1], args[2].all.collect {|c| [c.title, c.id] },{:include_blank => false })
