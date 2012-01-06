@@ -2,7 +2,7 @@
 
 Current version: 0.1
 
-Simple bugtracker for a small developers group. Written for a better understanding RoR conception.
+Simple bugtracker for small groups of developers. Written for a better understanding RoR conception.
 
 Use Rails >= 3.1 and Ruby 1.8.7 (plan upgrade to 1.9.2). Also use HAML to generate HTML and SASS to generate CSS files.
 
